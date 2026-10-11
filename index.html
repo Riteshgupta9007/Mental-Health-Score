@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Score Predictor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">Mind<span>Care</span></div>
+    <span class="nav-label">Student Wellness</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="tag">STUDENT WELLNESS TOOL</div>
+      <h1>Understand your <span>mental wellness.</span></h1>
+      <p>
+        Enter your lifestyle, study habits, and social media usage
+        to get a machine-learning-based mental health score estimate.
+      </p>
+    </section>
+
+    <section class="form-card">
+      <div class="section-heading">
+        <div>
+          <h2>Ckeck-Up Your Mental Health Score</h2>
+          <p>Fill the  all fields to generate your prediction.</p>
+        </div>
+        <span class="step">12 fields</span>
+      </div>
+
+      <form id="predictionForm">
+        <h3 class="group-title">Personal Information</h3>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" min="10" max="100"
+                   placeholder="e.g. 22" required>
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+              <option value="">Select gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="country">Country</label>
+            <select id="country" required>
+              <option value="">Select country</option>
+              <option>India</option>
+              <option>USA</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>UK</option>
+              <option>Germany</option>
+              <option>Mexico</option>
+              <option>Turkey</option>
+              <option>France</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="academic_level">Academic Level</label>
+            <select id="academic_level" required>
+              <option value="">Select level</option>
+              <option>High School</option>
+              <option>Undergraduate</option>
+              <option>Graduate</option>
+            </select>
+          </div>
+        </div>
+
+        <h3 class="group-title">Social Media Habits</h3>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="most_used_platform">Most Used Platform</label>
+            <select id="most_used_platform" required>
+              <option value="">Select platform</option>
+              <option>Facebook</option>
+              <option>LinkedIn</option>
+              <option>Instagram</option>
+              <option>Snapchat</option>
+              <option>Twitter</option>
+              <option>YouTube</option>
+              <option>TikTok</option>
+              <option>LINE</option>
+              <option>KakaoTalk</option>
+              <option>VKontakte</option>
+              <option>WhatsApp</option>
+              <option>WeChat</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="purpose_of_use">Purpose of Use</label>
+            <select id="purpose_of_use" required>
+              <option value="">Select purpose</option>
+              <option>Networking</option>
+              <option>Education</option>
+              <option>Entertainment</option>
+              <option>News</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="avg_daily_usage_hours">
+              Average Daily Usage (hours)
+            </label>
+            <input type="number" id="avg_daily_usage_hours"
+                   min="0" max="24" step="0.1"
+                   placeholder="e.g. 4.5" required>
+          </div>
+
+          <div class="field">
+            <label for="daily_unlocks">Daily Phone Unlocks</label>
+            <input type="number" id="daily_unlocks"
+                   min="0" step="1"
+                   placeholder="e.g. 60" required>
+          </div>
+        </div>
+
+        <h3 class="group-title">Lifestyle & Wellbeing</h3>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="study_hours">Daily Study Hours</label>
+            <input type="number" id="study_hours"
+                   min="0" max="24" step="0.1"
+                   placeholder="e.g. 5" required>
+          </div>
+
+          <div class="field">
+            <label for="physical_activity_hours">
+              Physical Activity (hours/day)
+            </label>
+            <input type="number" id="physical_activity_hours"
+                   min="0" max="24" step="0.1"
+                   placeholder="e.g. 1" required>
+          </div>
+
+          <div class="field">
+            <label for="sleep_hours_per_night">
+              Sleep Per Night (hours)
+            </label>
+            <input type="number" id="sleep_hours_per_night"
+                   min="0" max="24" step="0.1"
+                   placeholder="e.g. 7.5" required>
+          </div>
+
+          <div class="field">
+            <label for="stress_level">Stress Level</label>
+            <select id="stress_level" required>
+              <option value="">Select stress level</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Very High</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="errorMessage" class="message error" role="alert"
+             hidden></div>
+
+        <button type="submit" id="predictBtn">
+          <span id="buttonText">Predict Mental Health Score</span>
+          <span aria-hidden="true"> →</span>
+        </button>
+
+        <p class="privacy-note">
+          This is a machine-learning estimate, not a medical diagnosis.
+        </p>
+      </form>
+    </section>
+
+    <section id="resultCard" class="result-card" hidden
+             aria-live="polite">
+      <div class="result-icon">✦</div>
+      <p class="result-label">YOUR PREDICTED SCORE</p>
+      <div id="scoreValue" class="score-value">--</div>
+      <p id="resultDescription" class="result-description"></p>
+      <p class="result-disclaimer">
+        Interpret the score using your dataset's scoring scale.
+      </p>
+      <button type="button" id="resetBtn" class="secondary-btn">
+        Make Another Prediction
+      </button>
+    </section>
+
+    <footer>
+      <p>MindCare · Student Mental Health Score Prediction Project</p>
+      <p>For educational and research purposes only.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
