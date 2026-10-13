@@ -1,5 +1,5 @@
 
-const API_URL = https://mental-health-score-cwxt.onrender.com;
+const API_URL = "https://mental-health-score-cwxt.onrender.com";
 
 const form = document.getElementById("predictionForm");
 const predictBtn = document.getElementById("predictBtn");
