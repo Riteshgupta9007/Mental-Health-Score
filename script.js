@@ -59,7 +59,7 @@ form.addEventListener("submit", async (event) => {
   buttonText.textContent = "Predicting...";
 
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}/predict`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
